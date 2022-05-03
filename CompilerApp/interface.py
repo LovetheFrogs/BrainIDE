@@ -1,7 +1,6 @@
 from tkinter import *
 from brainfuck_compiler import *
 
-
 def menuBarCreator():
     menuBar = Menu(window)
     window.config(menu=menuBar)
@@ -34,26 +33,32 @@ def run():
     output.insert(END, result + '\n')
 
 
-window = Tk()
+def inicializeWindow():
+    global window
+    window = Tk()
 
-window.title('BrainIDE')
-window.iconbitmap('.//resources//lovethefrogs.ico')
+    window.title('BrainIDE')
+    window.iconbitmap('.//resources//lovethefrogs.ico')
 
-window.config(background='#5e5e5e')
+    window.config(background='#5e5e5e')
 
-editor = Text(background='#0d1117', foreground='white')
-editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
+    global editor
+    editor = Text(background='#0d1117', foreground='white')
+    editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
 
-input = Text(background='#0d1117', foreground='white')
-input.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
+    global input
+    input = Text(background='#0d1117', foreground='white')
+    input.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
 
-output = Text(background='#0d1117', foreground='white')
-output.bind("<Key>", lambda e: "break")
-output.pack(expand=True, fill=BOTH, side=RIGHT, padx=(1.75, 2.5), pady=(1.75, 2.5))
+    global output
+    output = Text(background='#0d1117', foreground='white')
+    output.bind("<Key>", lambda e: "break")
+    output.pack(expand=True, fill=BOTH, side=RIGHT, padx=(1.75, 2.5), pady=(1.75, 2.5))
 
-# logo = PhotoImage(file='.//resources//lovethefrogs.png')
-# Label(image=logo, background='#5e5e5e', width=300, anchor='center').grid(column=1, row=3)
+    # logo = PhotoImage(file='.//resources//lovethefrogs.png')
+    # Label(image=logo, background='#5e5e5e', width=300, anchor='center').grid(column=1, row=3)
 
-menuBarCreator()
+    menuBarCreator()
 
-window.mainloop()
+    window.mainloop()
+
