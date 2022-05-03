@@ -36,7 +36,7 @@ def run():
 
 window = Tk()
 
-window.title('First GUI')
+window.title('BrainIDE')
 window.iconbitmap('.//resources//lovethefrogs.ico')
 
 window.config(background='#5e5e5e')
