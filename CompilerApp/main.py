@@ -1,5 +1,9 @@
 from interface import *
 
-if __name__ == '__main__':
+
+def main():
     inicializeWindow()
-    
+
+
+if __name__ == '__main__':
+    main()
