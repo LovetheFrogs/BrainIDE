@@ -1,14 +1,62 @@
-from tkinter import *
-from tkinter import Text
+import os
 from functions import *
 
-global editor
-global toCode
-global output
-global window
+window = Tk()
+editor = Text(background='#0d1117', foreground='white')
+toCode = Text(background='#0d1117', foreground='white')
+output = Text(background='#0d1117', foreground='white')
+listBox = Listbox(window, background='#0d1117', foreground='white', width=35)
+projectDir = ''
 
 
-def menuBarCreator(window, editor, toCode, output):
+def sideBarContents():
+    listBox.delete(0, END)
+
+    fList = os.listdir(projectDir)
+    listBox.pack(fill=BOTH, side=LEFT)
+
+    for item in fList:
+        if item.endswith('.txt') or item.endswith('.bf'):
+            listBox.insert(END, item)
+
+
+def getWorkingDir():
+    global projectDir
+
+    system = './resources/system.txt'
+    with open(system, 'r') as sis:
+        content = sis.readlines()
+    sis.close()
+
+    if len(content) == 0:
+        messagebox.showerror("Fatal Error", "System file is empty!")
+    elif content[len(content) - 1] == "NONE":
+        chooseWorkingDir()
+        with open(system, 'w') as sis:
+            sis.write(projectDir)
+    else:
+        projectDir = content[len(content) - 1]
+
+
+def chooseWorkingDir():
+    global projectDir
+    projectDir = filedialog.askdirectory(initialdir='.//',
+                                         title='Choose working directory...')
+    sideBarContents()
+
+
+def showContents(event):
+    x = listBox.curselection()[0]
+
+    file = projectDir + '/'
+    file += listBox.get(x)
+    with open(file) as file:
+        file = file.read()
+    editor.delete('1.0', END)
+    editor.insert(END, file)
+
+
+def menuBarCreator():
     menuBar = Menu(window)
     window.config(menu=menuBar)
 
@@ -22,6 +70,8 @@ def menuBarCreator(window, editor, toCode, output):
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor))
     fileMenu.add_command(label='Save...', command=lambda: save(editor))
     fileMenu.add_separator()
+    fileMenu.add_command(label='Open Project...', command=chooseWorkingDir)
+    fileMenu.add_separator()
     fileMenu.add_command(label='Exit', command=exit)
 
     menuBar.add_cascade(label='Run', menu=runMenu)
@@ -30,26 +80,22 @@ def menuBarCreator(window, editor, toCode, output):
 
 
 def inicializeWindow():
-    window = Tk()
-
     window.title('BrainIDE')
     window.iconbitmap('.//resources//lovethefrogs.ico')
 
     window.config(background='#5e5e5e')
 
-    editor = Text(background='#0d1117', foreground='white')
+    getWorkingDir()
+    sideBarContents()
+
     editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
 
-    toCode = Text(background='#0d1117', foreground='white')
     toCode.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
 
-    output = Text(background='#0d1117', foreground='white')
     output.bind("<Key>", lambda e: "break")
     output.pack(expand=True, fill=BOTH, side=RIGHT, padx=(1.75, 2.5), pady=(1.75, 2.5))
 
-    # logo = PhotoImage(file='.//resources//lovethefrogs.png')
-    # Label(image=logo, background='#5e5e5e', width=300, anchor='center').grid(column=1, row=3)
+    listBox.bind("<<ListboxSelect>>", showContents)
 
-    menuBarCreator(window, editor, toCode, output)
-
+    menuBarCreator()
     window.mainloop()
