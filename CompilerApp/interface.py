@@ -1,8 +1,6 @@
 from tkinter import *
 from tkinter import Text
-
 from brainfuck_compiler import *
-
 
 global editor
 global toCode
@@ -54,10 +52,6 @@ def newFile():
 
 
 def inicializeWindow():
-<<<<<<< Updated upstream
-    global window
-=======
->>>>>>> Stashed changes
     window = Tk()
 
     window.title('BrainIDE')
@@ -65,24 +59,12 @@ def inicializeWindow():
 
     window.config(background='#5e5e5e')
 
-<<<<<<< Updated upstream
-    global editor
-    editor = Text(background='#0d1117', foreground='white')
-    editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
-
-    global input
-    input = Text(background='#0d1117', foreground='white')
-    input.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
-
-    global output
-=======
     editor = Text(background='#0d1117', foreground='white')
     editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
 
     toCode = Text(background='#0d1117', foreground='white')
     toCode.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
 
->>>>>>> Stashed changes
     output = Text(background='#0d1117', foreground='white')
     output.bind("<Key>", lambda e: "break")
     output.pack(expand=True, fill=BOTH, side=RIGHT, padx=(1.75, 2.5), pady=(1.75, 2.5))
@@ -90,10 +72,6 @@ def inicializeWindow():
     # logo = PhotoImage(file='.//resources//lovethefrogs.png')
     # Label(image=logo, background='#5e5e5e', width=300, anchor='center').grid(column=1, row=3)
 
-<<<<<<< Updated upstream
-    menuBarCreator()
-=======
     menuBarCreator(window, editor, toCode, output)
->>>>>>> Stashed changes
 
     window.mainloop()
