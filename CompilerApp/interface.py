@@ -16,11 +16,11 @@ def menuBarCreator(window, editor, toCode, output):
     runMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
-    fileMenu.add_command(label='New File...', command=lambda: newFile(editor, toCode, output))
-    fileMenu.add_command(label='Open File...', command=lambda: openFile(editor))
+    fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output))
+    fileMenu.add_command(label='Open File...', command=lambda: openFile(window, editor, toCode, output))
     fileMenu.add_separator()
-    fileMenu.add_command(label='Save As...', command=lambda: saveAs(editor))
-    fileMenu.add_command(label='Save...')
+    fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor))
+    fileMenu.add_command(label='Save...', command=lambda: save(editor))
     fileMenu.add_separator()
     fileMenu.add_command(label='Exit', command=exit)
 
