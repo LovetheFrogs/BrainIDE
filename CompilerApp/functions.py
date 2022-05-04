@@ -34,14 +34,15 @@ def newFile(window, editor, toCode, output):
 
 
 def openFile(window, editor, toCode, output):
-    save(editor)
+    global currWorkDir
+    if currWorkDir is not None:
+        save(editor)
 
     clearAll(editor, toCode, output)
     filename = filedialog.askopenfilename(initialdir='.//',
                                           title='Open File...',
                                           filetypes=(("Brainfuck Files", '*.bf'), ("Text Files", '*.txt')))
 
-    global currWorkDir
     currWorkDir = filename
 
     with open(filename, 'r') as f:
