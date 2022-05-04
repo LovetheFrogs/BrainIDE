@@ -1,5 +1,7 @@
 from tkinter import *
-from brainfuck_compiler import inicialize,codeReader
+from tkinter import filedialog
+from brainfuck_compiler import inicialize, codeReader
+
 
 def clearAll(editor, toCode, output):
     output.delete('1.0', END)
@@ -22,5 +24,10 @@ def newFile(editor, toCode, output):
     clearAll(editor, toCode, output)
     editor.insert('1.0', "NOTE: ALL CHANGES MUST BE SAVED OR ELSE THEY WILL BE DELETED UPON EXITING!!")
 
-def openFile(editor, toCode, output):
-    
+
+def openFile(editor):
+    filename = filedialog.askopenfilename(initialdir='.//', title='Open File...',
+                                          filetypes=(("Brainfuck Files", '*.bf'), ("Text Files", '*.txt')))
+    with open(filename, 'r') as f:
+        editor.insert(INSERT, f.read())
+    f.close()
