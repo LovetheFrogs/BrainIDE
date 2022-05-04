@@ -31,9 +31,11 @@ def codeReader(lang, code, pointer, input_data):
                 current = code[aux]
             i = aux
         elif current == ',':
+            my_input = input_data[pos_to_read]
             if pos_to_read + 1 < len(input_data):
                 pos_to_read += 1
-                my_input = input_data[pos_to_read]
+                if input_data[pos_to_read] == '\n':
+                    pos_to_read += 1
             pointer, lang, out = interpreter(lang, pointer, current, out, my_input)
         else:
             pointer, lang, out = interpreter(lang, pointer, current, out, my_input)
