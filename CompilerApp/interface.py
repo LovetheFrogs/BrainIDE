@@ -29,8 +29,6 @@ def getWorkingDir():
     sis.close()
 
     if len(content) == 0:
-        messagebox.showerror("Fatal Error", "System file is empty!")
-    elif content[len(content) - 1] == "NONE":
         chooseWorkingDir()
         with open(system, 'w') as sis:
             sis.write(projectDir)
