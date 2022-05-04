@@ -1,17 +1,11 @@
 from tkinter import *
 from tkinter import Text
-from brainfuck_compiler import *
+from functions import *
 
 global editor
 global toCode
 global output
 global window
-
-
-def clearAll():
-    output.delete('1.0', END)
-    input.delete('1.0', END)
-    editor.delete('1.0', END)
 
 
 def menuBarCreator(window, editor, toCode, output):
@@ -22,8 +16,8 @@ def menuBarCreator(window, editor, toCode, output):
     runMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
-    fileMenu.add_command(label='New File...', command=newFile)
-    fileMenu.add_command(label='Open File...')
+    fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output))
+    fileMenu.add_command(label='Open File...', command=lambda: openFile(editor))
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...')
     fileMenu.add_command(label='Save...')
@@ -33,22 +27,6 @@ def menuBarCreator(window, editor, toCode, output):
     menuBar.add_cascade(label='Run', menu=runMenu)
     runMenu.add_command(label='Run...', command=lambda: run(editor, toCode, output))
     runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END))
-
-
-def run(editor, toCode, output):
-    output.delete('1.0', END)
-    lang, pointer = inicialize()
-    code = editor.get('1.0', 'end-1c')
-    input_data = toCode.get('1.0', END).strip()
-
-    result = codeReader(lang, code, pointer, input_data)
-
-    output.insert(END, result + '\n')
-
-
-def newFile():
-    clearAll()
-    editor.insert('1.0', "NOTE: ALL CHANGES MUST BE SAVED OR ELSE THEY WILL BE DELETED UPON EXITING!!")
 
 
 def inicializeWindow():
