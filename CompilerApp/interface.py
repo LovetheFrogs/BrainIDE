@@ -1,19 +1,57 @@
 import os
 from functions import *
+from tkinter.scrolledtext import ScrolledText
+from pygments import lex
+from pygments.lexers import BrainfuckLexer
+
 
 window = Tk()
-editor = Text(background='#0d1117', foreground='white')
-toCode = Text(background='#0d1117', foreground='white')
-output = Text(background='#0d1117', foreground='white')
-listBox = Listbox(window, background='#0d1117', foreground='white', width=35)
+editor = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
+toCode = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
+output = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
+listBox = Listbox(window, background='#2b2b2b', foreground='white', width=35, font=('JetBrains Mono', 13))
 projectDir = ''
+colormap = {']': '#a94926', '+': '#cc7832', '-': '#cc7832', '<': '#6a8759', '>': '#6a8759', ',': '#6396ba',
+            '.': '#6396ba', '[': '#a94926'}
+
+
+def openFileAndFormat():
+    openFile(window, editor, toCode, output)
+    colorFormat(None)
+
+
+def formatLine(line=None):
+    start_range = 0
+    index = editor.index('insert').split('.')
+
+    if line is None:
+        line = int(index[0])
+
+    line_text = editor.get("{}.{}".format(line, 0), "{}.end".format(line))
+
+    for token, content in lex(line_text, BrainfuckLexer()):
+        end_range = start_range + len(content)
+        keySet = content[0]
+        if keySet in colormap:
+            editor.tag_add(keySet, '{}.{}'.format(line, start_range), '{}.{}'.format(line, end_range))
+        start_range = end_range
+
+
+def colorFormat(event):
+    code = editor.get('1.0', 'end-1c')
+    i = 1
+    for line in code.splitlines():
+        editor.index("%d.0" % i)
+        formatLine(line=i)
+        editor.update()
+        i += 1
 
 
 def sideBarContents():
     listBox.delete(0, END)
 
     fList = os.listdir(projectDir)
-    listBox.pack(fill=BOTH, side=LEFT)
+    listBox.pack(fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(2.5, 2.5))
 
     for item in fList:
         if item.endswith('.txt') or item.endswith('.bf'):
@@ -52,6 +90,7 @@ def showContents(event):
         file = file.read()
     editor.delete('1.0', END)
     editor.insert(END, file)
+    colorFormat(event)
 
 
 def menuBarCreator():
@@ -63,7 +102,7 @@ def menuBarCreator():
 
     menuBar.add_cascade(label='File', menu=fileMenu)
     fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output))
-    fileMenu.add_command(label='Open File...', command=lambda: openFile(window, editor, toCode, output))
+    fileMenu.add_command(label='Open File...', command=openFileAndFormat)
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor))
     fileMenu.add_command(label='Save...', command=lambda: save(editor))
@@ -80,15 +119,20 @@ def menuBarCreator():
 def inicializeWindow():
     window.title('BrainIDE')
     window.iconbitmap('.//resources//lovethefrogs.ico')
+    window.geometry('800x500')
 
     window.config(background='#5e5e5e')
 
     getWorkingDir()
     sideBarContents()
 
-    editor.pack(expand=True, fill=BOTH, padx=2.5, pady=(2.5, 1.75))
+    editor.pack(expand=True, fill=BOTH, padx=(1.75, 2.5), pady=(2.5, 1.75))
+    for c in colormap:
+        editor.tag_config(c, foreground=colormap[c])
 
-    toCode.pack(expand=True, fill=BOTH, side=LEFT, padx=(2.5, 1.75), pady=(1.75, 2.5))
+    editor.bind('<KeyRelease>', colorFormat)
+
+    toCode.pack(expand=True, fill=BOTH, side=LEFT, padx=(1.75, 1.75), pady=(1.75, 2.5))
 
     output.bind("<Key>", lambda e: "break")
     output.pack(expand=True, fill=BOTH, side=RIGHT, padx=(1.75, 2.5), pady=(1.75, 2.5))
