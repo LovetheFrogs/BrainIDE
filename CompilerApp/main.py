@@ -1,4 +1,5 @@
 from interface import *
+from functions import inicialize
 
 
 def main():
