@@ -6,6 +6,21 @@ from brainfuck_compiler import inicialize, codeReader
 currWorkDir = None
 
 
+def openDialog(window, editor, path):
+    global currWorkDir
+    if currWorkDir is not None:
+        save(editor)
+
+    editor.delete('1.0', END)
+
+    currWorkDir = path
+
+    with open(path, 'r') as f:
+        editor.insert(INSERT, f.read())
+    f.close()
+    window.title(f'{path} - BrainIDE')
+
+
 def clearAll(editor, toCode, output):
     output.delete('1.0', END)
     toCode.delete('1.0', END)
@@ -74,8 +89,18 @@ def save(editor):
     if currWorkDir is None:
         messagebox.showerror("File Error", "Error: Can not save a file wich is not existing. Open an existing file or "
                                            "Save As first.")
+
+        return False
+
     else:
         contents = editor.get('1.0', END)
 
         f = open(currWorkDir, 'w')
         f.write(contents)
+
+        return True
+
+
+def closeFile(editor):
+    if save(editor):
+        editor.delete('1.0', END)

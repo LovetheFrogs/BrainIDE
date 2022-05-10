@@ -1,5 +1,6 @@
 import os
 from functions import *
+from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from pygments import lex
 from pygments.lexers import BrainfuckLexer
@@ -86,10 +87,9 @@ def showContents(event):
 
     file = projectDir + '/'
     file += listBox.get(x)
-    with open(file) as file:
-        file = file.read()
-    editor.delete('1.0', END)
-    editor.insert(END, file)
+
+    openDialog(window, editor, file)
+
     colorFormat(event)
 
 
@@ -106,6 +106,7 @@ def menuBarCreator():
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor))
     fileMenu.add_command(label='Save...', command=lambda: save(editor))
+    fileMenu.add_command(label='Close File', command=lambda: closeFile(editor))
     fileMenu.add_separator()
     fileMenu.add_command(label='Open Project...', command=chooseWorkingDir)
     fileMenu.add_separator()
@@ -127,6 +128,8 @@ def inicializeWindow():
     sideBarContents()
 
     editor.pack(expand=True, fill=BOTH, padx=(1.75, 2.5), pady=(2.5, 1.75))
+    editor.insert('1.0', "NOTE: ALL CHANGES MUST BE SAVED OR ELSE THEY WILL BE DELETED UPON EXITING!!")
+
     for c in colormap:
         editor.tag_config(c, foreground=colormap[c])
 
