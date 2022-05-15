@@ -87,7 +87,7 @@ def saveAs(window, editor):
 def save(editor):
     global currWorkDir
     if currWorkDir is None:
-        messagebox.showerror("File Error", "Error: Can not save a file wich is not existing. Open an existing file or "
+        messagebox.showerror("File Error", "Error: Can not save a file which is not existing. Open an existing file or "
                                            "Save As first.")
 
         return False
@@ -102,5 +102,8 @@ def save(editor):
 
 
 def closeFile(editor):
-    if save(editor):
-        editor.delete('1.0', END)
+    global currWorkDir
+    save(editor)
+    editor.delete('1.0', END)
+    currWorkDir = None
+

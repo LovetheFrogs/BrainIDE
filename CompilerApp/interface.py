@@ -7,7 +7,8 @@ from pygments.lexers import BrainfuckLexer
 
 
 window = Tk()
-editor = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
+editor = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13), undo=True,
+                      autoseparators=True, maxundo=-1)
 toCode = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
 output = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
 listBox = Listbox(window, background='#2b2b2b', foreground='white', width=35, font=('JetBrains Mono', 13))
@@ -93,6 +94,20 @@ def showContents(event):
     colorFormat(event)
 
 
+def createShorcuts():
+    window.bind('<Shift-F8>', lambda x: clearAll(editor, toCode, output))
+    window.bind('<Shift-F9>', lambda x: run(editor, toCode, output))
+    window.bind('<Shift-F10>', lambda x: colorFormat(None))
+
+    window.bind('<Control-Shift-A>', lambda x: save(editor))
+    window.bind('<Control-Shift-S>', lambda x: saveAs(window, editor))
+    window.bind('<Control-Shift-E>', lambda x: closeFile(editor))
+    window.bind('<Control-Shift-O>', lambda x: chooseWorkingDir())
+
+    window.bind('<Shift-F1>', lambda x: newFile(window, editor, toCode, output))
+    window.bind('<Shift-F2>', lambda x: openFileAndFormat())
+
+
 def menuBarCreator():
     menuBar = Menu(window)
     window.config(menu=menuBar)
@@ -101,24 +116,32 @@ def menuBarCreator():
     runMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
-    fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output))
-    fileMenu.add_command(label='Open File...', command=openFileAndFormat)
+    fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output),
+                         accelerator='Shift+F1')
+    fileMenu.add_command(label='Open File...', command=openFileAndFormat, accelerator='Shift+F2')
     fileMenu.add_separator()
-    fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor))
-    fileMenu.add_command(label='Save...', command=lambda: save(editor))
-    fileMenu.add_command(label='Close File', command=lambda: closeFile(editor))
+    fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor), accelerator='Ctrl+Shift+S')
+    fileMenu.add_command(label='Save...', command=lambda: save(editor), accelerator='Control+Shift+A')
+    fileMenu.add_command(label='Close File', command=lambda: closeFile(editor), accelerator='Ctrl+Shift+E')
     fileMenu.add_separator()
-    fileMenu.add_command(label='Open Project...', command=chooseWorkingDir)
+    fileMenu.add_command(label='Undo', command=editor.edit_undo, accelerator='Ctrl+Z')
+    fileMenu.add_command(label='Redo', command=editor.edit_redo, accelerator='Ctrl+Y')
     fileMenu.add_separator()
-    fileMenu.add_command(label='Exit', command=exit)
+    fileMenu.add_command(label='Open Project...', command=chooseWorkingDir, accelerator='Control+Shift+O')
+    fileMenu.add_separator()
+    fileMenu.add_command(label='Exit', command=exit, accelerator='Alt+F4')
 
     menuBar.add_cascade(label='Run', menu=runMenu)
-    runMenu.add_command(label='Run...', command=lambda: run(editor, toCode, output))
-    runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END))
+    runMenu.add_command(label='Run...', command=lambda: run(editor, toCode, output), accelerator='Shift+F9')
+    runMenu.add_separator()
+    runMenu.add_command(label='Format', command=lambda: colorFormat(None), accelerator='Shift+F10')
+    runMenu.add_separator()
+    runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END), accelerator='Shift+F8')
 
 
 def inicializeWindow():
     window.title('BrainIDE')
+
     window.iconbitmap('.//resources//lovethefrogs.ico')
     window.geometry('800x500')
 
@@ -142,5 +165,6 @@ def inicializeWindow():
 
     listBox.bind("<<ListboxSelect>>", showContents)
 
+    createShorcuts()
     menuBarCreator()
     window.mainloop()
