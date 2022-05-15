@@ -142,7 +142,8 @@ def menuBarCreator():
 def inicializeWindow():
     window.title('BrainIDE')
 
-    window.iconbitmap('.//resources//lovethefrogs.ico')
+    icon = PhotoImage(file='.//resources//lovethefrogs.png')
+    window.iconphoto(False, icon)
     window.geometry('800x500')
 
     window.config(background='#5e5e5e')
