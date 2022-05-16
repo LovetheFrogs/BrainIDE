@@ -1,5 +1,4 @@
 from tkinter import *
-
 from tkinter import filedialog
 from tkinter import messagebox
 from brainfuck_compiler import inicialize, codeReader
