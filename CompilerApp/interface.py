@@ -1,5 +1,6 @@
 import os
 from functions import *
+from config import *
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from pygments import lex
@@ -15,6 +16,10 @@ listBox = Listbox(window, background='#2b2b2b', foreground='white', width=35, fo
 projectDir = ''
 colormap = {']': '#a94926', '+': '#cc7832', '-': '#cc7832', '<': '#6a8759', '>': '#6a8759', ',': '#6396ba',
             '.': '#6396ba', '[': '#a94926'}
+
+
+def openConfig():
+    createConfig(window, colormap)
 
 
 def openFileAndFormat():
@@ -111,6 +116,7 @@ def createShorcuts():
 def menuBarCreator():
     menuBar = Menu(window)
     window.config(menu=menuBar)
+    window.config(bg='black')
 
     fileMenu = Menu(menuBar, tearoff=0)
     runMenu = Menu(menuBar, tearoff=0)
@@ -137,6 +143,8 @@ def menuBarCreator():
     runMenu.add_command(label='Format', command=lambda: colorFormat(None), accelerator='Shift+F10')
     runMenu.add_separator()
     runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END), accelerator='Shift+F8')
+
+    menuBar.add_command(label='Config', command=openConfig)
 
 
 def inicializeWindow():
