@@ -1,4 +1,6 @@
 import os
+import sys
+
 from functions import *
 from config import *
 from tkinter import *
@@ -16,6 +18,17 @@ listBox = Listbox(window, background='#2b2b2b', foreground='white', width=35, fo
 projectDir = ''
 colormap = {']': '#a94926', '+': '#cc7832', '-': '#cc7832', '<': '#6a8759', '>': '#6a8759', ',': '#6396ba',
             '.': '#6396ba', '[': '#a94926'}
+
+
+def resource_path(relative_path):
+
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def openConfig():
@@ -68,7 +81,7 @@ def sideBarContents():
 def getWorkingDir():
     global projectDir
 
-    system = './resources/system.txt'
+    system = resource_path('resources/system.txt')
     with open(system, 'r') as sis:
         content = sis.readlines()
     sis.close()
@@ -135,7 +148,7 @@ def menuBarCreator():
     fileMenu.add_separator()
     fileMenu.add_command(label='Open Project...', command=chooseWorkingDir, accelerator='Control+Shift+O')
     fileMenu.add_separator()
-    fileMenu.add_command(label='Exit', command=exit, accelerator='Alt+F4')
+    fileMenu.add_command(label='Exit', command=lambda: window.destroy(), accelerator='Alt+F4')
 
     menuBar.add_cascade(label='Run', menu=runMenu)
     runMenu.add_command(label='Run...', command=lambda: run(editor, toCode, output), accelerator='Shift+F9')
@@ -150,7 +163,7 @@ def menuBarCreator():
 def inicializeWindow():
     window.title('BrainIDE')
 
-    icon = PhotoImage(file='.//resources//lovethefrogs.png')
+    icon = PhotoImage(file=resource_path('resources//lovethefrogs.png'))
     window.iconphoto(False, icon)
     window.geometry('800x500')
 
