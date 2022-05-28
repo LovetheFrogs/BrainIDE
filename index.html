@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>BrainIDE | Brainfuck IDE using python, bundled with it’s own compiler</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="BrainIDE" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Brainfuck IDE using python, bundled with it’s own compiler" />
+<meta property="og:description" content="Brainfuck IDE using python, bundled with it’s own compiler" />
+<link rel="canonical" href="https://lovethefrogs.github.io/BrainIDE/" />
+<meta property="og:url" content="https://lovethefrogs.github.io/BrainIDE/" />
+<meta property="og:site_name" content="BrainIDE" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="BrainIDE" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Brainfuck IDE using python, bundled with it’s own compiler","headline":"BrainIDE","name":"BrainIDE","url":"https://lovethefrogs.github.io/BrainIDE/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="style.css">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/BrainIDE/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">BrainIDE</h1>
+      <h2 class="project-tagline">Brainfuck IDE using python, bundled with it's own compiler</h2>
+      
+        <a href="https://github.com/LovetheFrogs/BrainIDE" class="btn">View on GitHub</a>
+        <a href="https://github.com/LovetheFrogs/BrainIDE/releases/download/v1.0.0-beta/BrainIDE-Windows-1.0.0-beta.zip" class="btn">Download for windows</a>
+        <a href="https://github.com/LovetheFrogs/BrainIDE/releases/download/v1.0.0-beta/BrainIDE-Linux-1.0.0-beta.zip" class="btn">Download for linux</a>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="brainide">BrainIDE</h1>
+<p>Welcome to BrainIDE! Following will be some information about this software as well as some help about Brainfuck itself.</p>
+
+<h2 id="whats-brainide">What’s BrainIDE?</h2>
+<p>BrainIDE aims to provide an <strong>easy-to-use, lightweight and user-friendly</strong> brainfuck IDE. The main purpose of this piece of sowtware is to allow for 
+brainfuck coding on the go, without the need of an Internet connection. Fully coded using python and tkinter for GUI design.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Windows version</th>
+      <th>Linux version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://user-images.githubusercontent.com/102818341/170823884-9351cfff-b952-4322-851b-70c9e0b0b6b8.png" alt="windows" /></td>
+      <td><img src="https://user-images.githubusercontent.com/102818341/170818959-2dbed08b-ef42-4669-b857-38568917041e.png" alt="linux" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="brainides-features">BrainIDE’s features.</h2>
+<p>BrainIDE has several features that makes it helful and easy-to-use. The most relevant ones are automatic code highlighting, keyboard shorcuts for ecery 
+action, and typical functions any IDE has (save, open project…)</p>
+
+<p>For more advanced users, BrainIDE’s interpreter can be changed by just cloning the repository and changing brainfuck_compiler.py with your own. <strong>Note it 
+must be renamed to <em>brainfuck_compiler.py</em></strong></p>
+
+<h2 id="how-to-install-brainide">How to Install BrainIDE?</h2>
+<p>Installation is as easy as it could be, just go to releases, select the last release, and download the zip file corresponding to your OS (current version 
+is only supported in Windows and Linux) and follow the intructions for your own dist. You can find these instructions in the README.txt file inside the zip 
+file you’ve downloaded!</p>
+
+<h2 id="how-to-contribute">How to contribute?</h2>
+<p>All contributions and suggestions are welcome. If you´d like to contribute, clone the repo with:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/LovetheFrogs/BrainIDE
+</code></pre></div></div>
+<p>Send your PR’s and they will be reviewed.</p>
+
+<h2 id="brainfuck">Brainfuck!</h2>
+<p>Continue reading for some information regarding brainfuck and how to use it.</p>
+
+<h3 id="what-is-brainfuck">What is brainfuck?</h3>
+<p>The following is extracted from the <a href="https://en.wikipedia.org/wiki/Brainfuck">Wikipedia page</a> for brainfuck. If you would like a better insight into the 
+history and origin of this language, I’d recommend you to head over there.</p>
+
+<blockquote>
+  <p>Brainfuck is an esoteric programming language created in 1993 by Urban Müller.</p>
+
+  <p>Notable for its extreme minimalism, the language consists of only eight simple commands, a data pointer and an instruction pointer. While it is fully 
+Turing complete, it is not intended for practical use, but to challenge and amuse programmers. Brainfuck simply requires one to break commands into 
+microscopic steps.</p>
+
+  <p>The language’s name is a reference to the slang term brainfuck, which refers to things so complicated or unusual that they exceed the limits of one’s 
+understanding.</p>
+</blockquote>
+
+<h3 id="the-language">The language.</h3>
+<p>Brainfuck is made of two main components. An array of 30k cells and a pointer to one of its cells. When a brainfuck program begins execution, the pointer 
+is placed at cell 0 and each of the cell’s values are set to 0.</p>
+
+<p>The programmer can manipulate the value of a cell or move to a different one, as well as looping through a set of instructions or use input/output. In 
+total, there are 8 commands as stated above. Here you can find a table detailing the function of each oone of them.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>+</strong></td>
+      <td>Increment value of current cell by one.</td>
+    </tr>
+    <tr>
+      <td><strong>-</strong></td>
+      <td>Decrement value of current cell by one.</td>
+    </tr>
+    <tr>
+      <td><strong>&gt;</strong></td>
+      <td>Move pointer one position to the right.</td>
+    </tr>
+    <tr>
+      <td><strong>&lt;</strong></td>
+      <td>Move pointer one position to the left.</td>
+    </tr>
+    <tr>
+      <td><strong>[</strong></td>
+      <td>Start of a while loop, will repeat until cell pointet to is cero.</td>
+    </tr>
+    <tr>
+      <td><strong>]</strong></td>
+      <td>Marks the end of a while loop. if the cell pointet to when reached here is noncero, it loops over.</td>
+    </tr>
+    <tr>
+      <td><strong>.</strong></td>
+      <td>Used to output the ASCII value of the current cell to the screen.</td>
+    </tr>
+    <tr>
+      <td><strong>,</strong></td>
+      <td>Used to input the ASCII value of one byte to the cell pointed to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As one could have probably guessed by now, brainfuck uses ASCII codes to manage whats in the cell. This means that if cell 3 has the value ‘97’, it 
+actually has the letter ‘a’.</p>
+
+<h3 id="a-simple-introduction-to-programming-in-brainfuck">A simple introduction to programming in brainfuck.</h3>
+<p>Below, you will learn how to write some code wich will print a letter. However, this is super simple. However, if you’d want to learn brainfuck from 
+scratch, I’d recommend heading over to <a href="https://gist.github.com/roachhd/dce54bec8ba55fb17d3a"><strong>roachhd’s brainfuck bacics</strong></a> as it deepens way more into 
+the basics of this language.</p>
+
+<p>Let’s code a simple program in brainfuck. This one is pretty simple and its aim is just to show how to print a character. Let’s say you would like to 
+output ‘B’ to screen, you could use the following code:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>++++++[&gt;+++++++++++&lt;-]&gt;.
+</code></pre></div></div>
+<p>Lets break it down:</p>
+
+<p>First, we set the value of the first to 6. This will be used to iterate trough a loop and avoid the hussle of havint to type in 66 plus symbols (as ‘B’ in
+ASCII is 66 decimal).</p>
+
+<p>After that, we start a while loop and move to the second cell, adding 11 to it. When we are done with that, we move back to the first cell and decrease 
+it’s value by one.</p>
+
+<p>As we’ve reached the end of our loop and the current cell we’re at is not 0, we iterate though again. Following there’s a diagram of show the fist 3 cells
+look like at the start of all the loop iterations. (Note that the pointer will be pointing to the first cell at the start of each cycle).</p>
+
+<p align="center"> |6|0|0| ---&gt; |5|11|0| ---&gt; |4|22|0| ---&gt; |3|33|0| ---&gt; |2|44|0| ---&gt; |1|55|0| </p>
+
+<p>Lastly, we move to the second cell, wich contains the value 66, and use ‘.’ to output it’s value. If you open BrainIDE, copy the code snippet above, and
+execute it, you will see that a letter <strong>B</strong> prints on the output box.</p>
+
+<p>So, with what you have learned, you could easily write your very own Hello World! program. I’ll leave one example below, so take your time to analize it.
+Note that there’s nos only one way to code it, so it is likely you’ll see other implementations online. A commented version of the code can be found inside
+the repository, under CompilerApp &gt; Premade &gt; HelloWorld.bf</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;++++++++[&lt;+++++++++&gt;-]&lt;.&gt;+++++++[&lt;++++&gt;-]&lt;+.+++++++..+++.[-]&gt;++++++++[&lt;++++&gt;-]&lt;.&gt;+++++++++++[&lt;+++++&gt;-]&lt;.
+&gt;++++++[&lt;++++&gt;-]&lt;.+++.&gt;++[&lt;---&gt;-]&lt;.&gt;++++[&lt;--&gt;-]&lt;.&gt;+++++++++++++++++[&lt;----&gt;-]&lt;+.
+</code></pre></div></div>
+
+<h2 id="about">About.</h2>
+<p>BrainIDE is software developed by LovetheFrogs and licensed under GPL-3.0 license.</p>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/LovetheFrogs/BrainIDE">BrainIDE</a> is maintained by <a href="https://github.com/LovetheFrogs">LovetheFrogs</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
