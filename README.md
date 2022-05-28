@@ -6,9 +6,9 @@ Welcome to BrainIDE! Following will be some information about this software as w
 BrainIDE aims to provide an **easy-to-use, lightweight and user-friendly** brainfuck IDE. The main purpose of this piece of sowtware is to allow for 
 brainfuck coding on the go, without the need of an Internet connection. Fully coded using python and tkinter for GUI design.
 
-| Linux version | Windows version |
-| - | -|
-| ![image](https://user-images.githubusercontent.com/102818341/170818959-2dbed08b-ef42-4669-b857-38568917041e.png) | ![image](https://user-images.githubusercontent.com/102818341/170818959-2dbed08b-ef42-4669-b857-38568917041e.png) |
+| Windows version | Linux version |
+| - | - |
+| ![windows](https://user-images.githubusercontent.com/102818341/170823884-9351cfff-b952-4322-851b-70c9e0b0b6b8.png) | ![linux](https://user-images.githubusercontent.com/102818341/170818959-2dbed08b-ef42-4669-b857-38568917041e.png) |
 
 ## BrainIDE's features.
 BrainIDE has several features that makes it helful and easy-to-use. The most relevant ones are automatic code highlighting, keyboard shorcuts for ecery 
