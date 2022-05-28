@@ -27,7 +27,7 @@ file you've downloaded!
 ## How to contribute?
 All contributions and suggestions are welcome. If you´d like to contribute, clone the repo with:
 ```
-https://github.com/LovetheFrogs/BrainIDE
+git clone https://github.com/LovetheFrogs/BrainIDE
 ```
 Send your PR's and they will be reviewed.
 
