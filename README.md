@@ -19,8 +19,9 @@ must be renamed to _brainfuck_compiler.py_**
 
 
 ## How to Install BrainIDE?
-Installation is as easy as it could be, just download the zip file corresponding to your OS (current version is only supported in Windows and Linux) and 
-follow the intructions for your own dist. You can find these instructions in the README.txt file inside the zip file you've downloaded!
+Installation is as easy as it could be, just go to releases, select the last release, and download the zip file corresponding to your OS (current version 
+is only supported in Windows and Linux) and follow the intructions for your own dist. You can find these instructions in the README.txt file inside the zip 
+file you've downloaded!
 
 
 ## How to contribute?
