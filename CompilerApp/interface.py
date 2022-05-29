@@ -7,6 +7,7 @@ from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from pygments import lex
 from pygments.lexers import BrainfuckLexer
+from translator import createTranslator
 
 
 window = Tk()
@@ -29,6 +30,10 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+
+def openTranslator():
+    createTranslator(window)
 
 
 def openConfig():
@@ -157,13 +162,15 @@ def menuBarCreator():
     runMenu.add_separator()
     runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END), accelerator='Shift+F8')
 
+    menuBar.add_command(label='Translator', command=openTranslator)
+
     menuBar.add_command(label='Config', command=openConfig)
 
 
 def inicializeWindow():
     window.title('BrainIDE')
 
-    icon = PhotoImage(file=resource_path('resources//lovethefrogs.png'))
+    icon = PhotoImage(file=resource_path('resources/lovethefrogs.png'))
     window.iconphoto(False, icon)
     window.geometry('800x500')
 

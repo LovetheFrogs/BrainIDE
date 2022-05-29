@@ -51,9 +51,15 @@ def interpreter(lang, pointer, current, out, input_data):
     if current == '>':
         pointer += 1
     if current == '+':
-        lang[pointer] += 1
+        if lang[pointer] == 255:
+            lang[pointer] = 0
+        else:
+            lang[pointer] += 1
     if current == '-':
-        lang[pointer] -= 1
+        if lang[pointer] == 0:
+            lang[pointer] = 255
+        else:
+            lang[pointer] -= 1
     if current == '.':
         out += (chr(lang[pointer]))
     if current == ',':
