@@ -145,7 +145,7 @@ def menuBarCreator():
     fileMenu.add_command(label='Open File...', command=openFileAndFormat, accelerator='Shift+F2')
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor), accelerator='Ctrl+Shift+S')
-    fileMenu.add_command(label='Save...', command=lambda: save(editor), accelerator='Control+Shift+A')
+    fileMenu.add_command(label='Save All...', command=lambda: save(editor), accelerator='Control+Shift+A')
     fileMenu.add_command(label='Close File', command=lambda: closeFile(editor), accelerator='Ctrl+Shift+E')
     fileMenu.add_separator()
     fileMenu.add_command(label='Undo', command=editor.edit_undo, accelerator='Ctrl+Z')
