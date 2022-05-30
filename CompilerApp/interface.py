@@ -143,6 +143,7 @@ def menuBarCreator():
     fileMenu = Menu(menuBar, tearoff=0)
     runMenu = Menu(menuBar, tearoff=0)
     premadeMenu = Menu(menuBar, tearoff=0)
+    helpMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
     fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output),
@@ -175,6 +176,13 @@ def menuBarCreator():
     menuBar.add_command(label='Translator', command=openTranslator)
 
     menuBar.add_command(label='Config', command=openConfig)
+
+    menuBar.add_cascade(label='Help', menu=helpMenu)
+    helpMenu.add_command(label='BrainIDE help', command=lambda: openHelp('''input url to githubpages website'''),
+                         accelerator='Shift+F1')
+    helpMenu.add_command(label='Brainfuck help', command=lambda: openHelp('''input url to githubpages website'''))
+    helpMenu.add_command(label='Shortcuts', command=lambda: openHelp('''input url to githubpages website'''))
+    helpMenu.add_command(label='Translate help', command=lambda: openHelp('''input url to githubpages website'''))
 
 
 def inicializeWindow():
