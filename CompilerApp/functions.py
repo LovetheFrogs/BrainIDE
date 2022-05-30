@@ -106,4 +106,3 @@ def closeFile(editor):
     save(editor)
     editor.delete('1.0', END)
     currWorkDir = None
-
