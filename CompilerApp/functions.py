@@ -107,3 +107,12 @@ def closeFile(editor):
     editor.delete('1.0', END)
     currWorkDir = None
 
+
+def openPremade(path, window, editor, toCode, output):
+    clearAll(editor, toCode, output)
+
+    with open(path, 'r') as f:
+        editor.insert(INSERT, f.read())
+    f.close()
+
+    window.title(f'{path.strip("premade//")} - BrainIDE')

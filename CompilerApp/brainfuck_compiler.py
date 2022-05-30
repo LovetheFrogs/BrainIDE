@@ -16,6 +16,7 @@ def codeReader(lang, code, pointer, input_data):
     out = ""
     pos_to_read = 0
     my_input = None
+    input_data += 'ñ'
     while i < len(code):
         current = code[i]
         if current == '[':
@@ -25,6 +26,14 @@ def codeReader(lang, code, pointer, input_data):
             while current != ']' or lang[pointer] != 0:
                 if current == ']':
                     aux = aux2
+                elif current == ',':
+                    my_input = input_data[pos_to_read]
+                    if pos_to_read + 1 < len(input_data):
+                        pos_to_read += 1
+                        if input_data[pos_to_read] == '\n' and pos_to_read + 1 < len(input_data):
+                            pos_to_read += 1
+                    pointer, lang, out = interpreter(lang, pointer, current, out, my_input)
+                    aux += 1
                 else:
                     pointer, lang, out = interpreter(lang, pointer, current, out, my_input)
                     aux += 1
@@ -34,7 +43,7 @@ def codeReader(lang, code, pointer, input_data):
             my_input = input_data[pos_to_read]
             if pos_to_read + 1 < len(input_data):
                 pos_to_read += 1
-                if input_data[pos_to_read] == '\n':
+                if input_data[pos_to_read] == '\n' and pos_to_read + 1 < len(input_data):
                     pos_to_read += 1
             pointer, lang, out = interpreter(lang, pointer, current, out, my_input)
         else:
@@ -63,7 +72,8 @@ def interpreter(lang, pointer, current, out, input_data):
     if current == '.':
         out += (chr(lang[pointer]))
     if current == ',':
-        lang[pointer] = ord(input_data)
+        if input_data != 'ñ':
+            lang[pointer] = ord(input_data)
 
     return pointer, lang, out
 
