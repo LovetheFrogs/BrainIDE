@@ -131,7 +131,7 @@ def createShorcuts():
     window.bind('<Control-Shift-E>', lambda x: closeFile(editor))
     window.bind('<Control-Shift-O>', lambda x: chooseWorkingDir())
 
-    window.bind('<Shift-F1>', lambda x: newFile(window, editor, toCode, output))
+    window.bind('<Shift-F3>', lambda x: newFile(window, editor, toCode, output))
     window.bind('<Shift-F2>', lambda x: openFileAndFormat())
 
 
@@ -146,7 +146,7 @@ def menuBarCreator():
 
     menuBar.add_cascade(label='File', menu=fileMenu)
     fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output),
-                         accelerator='Shift+F1')
+                         accelerator='Shift+F3')
     fileMenu.add_command(label='Open File...', command=openFileAndFormat, accelerator='Shift+F2')
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor), accelerator='Ctrl+Shift+S')
