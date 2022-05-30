@@ -1,6 +1,6 @@
 import os
 import sys
-
+import webbrowser
 from functions import *
 from config import *
 from tkinter import *
@@ -31,9 +31,14 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+
 def premade(path):
     openPremade(path, window, editor, toCode, output)
     colorFormat(None)
+
+
+def openHelp(path):
+    webbrowser.open_new(path)
 
 
 def openTranslator():
@@ -131,7 +136,8 @@ def createShorcuts():
     window.bind('<Control-Shift-E>', lambda x: closeFile(editor))
     window.bind('<Control-Shift-O>', lambda x: chooseWorkingDir())
 
-    window.bind('<Shift-F1>', lambda x: newFile(window, editor, toCode, output))
+    window.bind('<Shift-F1>', lambda x: openHelp('https://lovethefrogs.github.io/BrainIDE/brainide-help.html'))
+    window.bind('<Shift-F3>', lambda x: newFile(window, editor, toCode, output))
     window.bind('<Shift-F2>', lambda x: openFileAndFormat())
 
 
@@ -147,7 +153,7 @@ def menuBarCreator():
 
     menuBar.add_cascade(label='File', menu=fileMenu)
     fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output),
-                         accelerator='Shift+F1')
+                         accelerator='Shift+F3')
     fileMenu.add_command(label='Open File...', command=openFileAndFormat, accelerator='Shift+F2')
     fileMenu.add_separator()
     fileMenu.add_command(label='Save As...', command=lambda: saveAs(window, editor), accelerator='Ctrl+Shift+S')
@@ -178,11 +184,15 @@ def menuBarCreator():
     menuBar.add_command(label='Config', command=openConfig)
 
     menuBar.add_cascade(label='Help', menu=helpMenu)
-    helpMenu.add_command(label='BrainIDE help', command=lambda: openHelp('''input url to githubpages website'''),
+    helpMenu.add_command(label='BrainIDE help',
+                         command=lambda: openHelp('https://lovethefrogs.github.io/BrainIDE/brainide-help.html'),
                          accelerator='Shift+F1')
-    helpMenu.add_command(label='Brainfuck help', command=lambda: openHelp('''input url to githubpages website'''))
-    helpMenu.add_command(label='Shortcuts', command=lambda: openHelp('''input url to githubpages website'''))
-    helpMenu.add_command(label='Translate help', command=lambda: openHelp('''input url to githubpages website'''))
+    helpMenu.add_command(label='Brainfuck help',
+                         command=lambda: openHelp('https://lovethefrogs.github.io/BrainIDE/brainfuck-help.html'))
+    helpMenu.add_command(label='Shortcuts',
+                         command=lambda: openHelp('https://lovethefrogs.github.io/BrainIDE/shortcuts-help.html'))
+    helpMenu.add_command(label='Translate help',
+                         command=lambda: openHelp('https://lovethefrogs.github.io/BrainIDE/translator-help.html'))
 
 
 def inicializeWindow():
