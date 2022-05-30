@@ -31,6 +31,10 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+def premade(path):
+    openPremade(path, window, editor, toCode, output)
+    colorFormat(None)
+
 
 def openTranslator():
     createTranslator(window)
@@ -138,6 +142,7 @@ def menuBarCreator():
 
     fileMenu = Menu(menuBar, tearoff=0)
     runMenu = Menu(menuBar, tearoff=0)
+    premadeMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
     fileMenu.add_command(label='New File...', command=lambda: newFile(window, editor, toCode, output),
@@ -161,6 +166,11 @@ def menuBarCreator():
     runMenu.add_command(label='Format', command=lambda: colorFormat(None), accelerator='Shift+F10')
     runMenu.add_separator()
     runMenu.add_command(label='Clear Console', command=lambda: output.delete('1.0', END), accelerator='Shift+F8')
+
+    menuBar.add_cascade(label='Premade', menu=premadeMenu)
+    premadeMenu.add_command(label='Hello World!', command=lambda: premade('premade//HelloWorld.bf'))
+    premadeMenu.add_command(label='Greetings!', command=lambda: premade('premade//YourName.bf'))
+    premadeMenu.add_command(label='Sum', command=lambda: premade('premade//Sum.bf'))
 
     menuBar.add_command(label='Translator', command=openTranslator)
 
