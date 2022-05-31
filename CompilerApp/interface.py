@@ -49,8 +49,15 @@ def openTranslator():
     createTranslator(window)
 
 
-def openConfig():
-    createConfig(window, colormap)
+def openConfig(opt):
+    global colormap
+    global editor
+
+    if opt == 1:
+        createConfig(window, colormap, opt)
+        for c in colormap:
+            editor.tag_delete(c)
+            editor.tag_configure(c, foreground=colormap[c])
 
 
 def openFileAndFormat():
@@ -146,6 +153,8 @@ def createShorcuts():
 
 
 def menuBarCreator():
+    global colormap
+
     menuBar = Menu(window)
     window.config(menu=menuBar)
     window.config(bg='black')
@@ -153,6 +162,7 @@ def menuBarCreator():
     fileMenu = Menu(menuBar, tearoff=0)
     runMenu = Menu(menuBar, tearoff=0)
     premadeMenu = Menu(menuBar, tearoff=0)
+    configMenu = Menu(menuBar, tearoff=0)
     helpMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
@@ -187,7 +197,8 @@ def menuBarCreator():
 
     menuBar.add_command(label='ASCII', command=showASCII)
 
-    menuBar.add_command(label='Config', command=openConfig)
+    menuBar.add_cascade(label='Config', menu=configMenu)
+    configMenu.add_command(label='Color Format', command=lambda: openConfig(1))
 
     menuBar.add_cascade(label='Help', menu=helpMenu)
     helpMenu.add_command(label='BrainIDE help',
