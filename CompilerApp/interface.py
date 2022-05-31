@@ -3,11 +3,11 @@ import sys
 import webbrowser
 from functions import *
 from config import *
-from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from pygments import lex
 from pygments.lexers import BrainfuckLexer
 from translator import createTranslator
+from ASCII import *
 
 
 window = Tk()
@@ -30,6 +30,10 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+
+def showASCII():
+    openTable(window)
 
 
 def premade(path):
@@ -180,6 +184,8 @@ def menuBarCreator():
     premadeMenu.add_command(label='Sum', command=lambda: premade('premade//Sum.bf'))
 
     menuBar.add_command(label='Translator', command=openTranslator)
+
+    menuBar.add_command(label='ASCII', command=showASCII)
 
     menuBar.add_command(label='Config', command=openConfig)
 
