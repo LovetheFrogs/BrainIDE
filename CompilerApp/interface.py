@@ -219,8 +219,6 @@ def inicializeWindow():
 
     loadColormap()
 
-    print(colormap)
-
     icon = PhotoImage(file=resource_path('resources/lovethefrogs.png'))
     window.iconphoto(False, icon)
     window.geometry('800x500')

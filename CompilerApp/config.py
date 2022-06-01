@@ -75,6 +75,7 @@ def alterColor(altered, colormap, btt):
     afile.close()
 
     btt.config(bg=new[1])
+    messagebox.showinfo("Restart BrainIDE", "If you want changes to apply, you will have to restart Brain IDE")
 
 
 def default():
