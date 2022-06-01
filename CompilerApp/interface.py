@@ -8,6 +8,7 @@ from pygments import lex
 from pygments.lexers import BrainfuckLexer
 from translator import createTranslator
 from ASCII import *
+import pickle
 
 
 window = Tk()
@@ -17,8 +18,8 @@ toCode = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrai
 output = ScrolledText(background='#2b2b2b', foreground='#808077', font=('JetBrains Mono', 13))
 listBox = Listbox(window, background='#2b2b2b', foreground='white', width=35, font=('JetBrains Mono', 13))
 projectDir = ''
-colormap = {']': '#a94926', '+': '#cc7832', '-': '#cc7832', '<': '#6a8759', '>': '#6a8759', ',': '#6396ba',
-            '.': '#6396ba', '[': '#a94926'}
+'''colormap = {']': '#a94926', '+': '#cc7832', '-': '#cc7832', '<': '#6a8759', '>': '#6a8759', ',': '#6396ba',
+            '.': '#6396ba', '[': '#a94926'}'''
 
 
 def resource_path(relative_path):
@@ -49,8 +50,14 @@ def openTranslator():
     createTranslator(window)
 
 
-def openConfig():
-    createConfig(window, colormap)
+def openConfig(opt):
+    global colormap
+    global editor
+
+    if opt == 1:
+        createConfig(window, colormap, opt)
+
+    loadColormap()
 
 
 def openFileAndFormat():
@@ -146,6 +153,8 @@ def createShorcuts():
 
 
 def menuBarCreator():
+    global colormap
+
     menuBar = Menu(window)
     window.config(menu=menuBar)
     window.config(bg='black')
@@ -153,6 +162,7 @@ def menuBarCreator():
     fileMenu = Menu(menuBar, tearoff=0)
     runMenu = Menu(menuBar, tearoff=0)
     premadeMenu = Menu(menuBar, tearoff=0)
+    configMenu = Menu(menuBar, tearoff=0)
     helpMenu = Menu(menuBar, tearoff=0)
 
     menuBar.add_cascade(label='File', menu=fileMenu)
@@ -187,7 +197,8 @@ def menuBarCreator():
 
     menuBar.add_command(label='ASCII', command=showASCII)
 
-    menuBar.add_command(label='Config', command=openConfig)
+    menuBar.add_cascade(label='Config', menu=configMenu)
+    configMenu.add_command(label='Color Format', command=lambda: openConfig(1))
 
     menuBar.add_cascade(label='Help', menu=helpMenu)
     helpMenu.add_command(label='BrainIDE help',
@@ -202,7 +213,13 @@ def menuBarCreator():
 
 
 def inicializeWindow():
+    global colormap
+
     window.title('BrainIDE')
+
+    loadColormap()
+
+    print(colormap)
 
     icon = PhotoImage(file=resource_path('resources/lovethefrogs.png'))
     window.iconphoto(False, icon)
@@ -216,9 +233,6 @@ def inicializeWindow():
     editor.pack(expand=True, fill=BOTH, padx=(1.75, 2.5), pady=(2.5, 1.75))
     editor.insert('1.0', "NOTE: ALL CHANGES MUST BE SAVED OR ELSE THEY WILL BE DELETED UPON EXITING!!")
 
-    for c in colormap:
-        editor.tag_config(c, foreground=colormap[c])
-
     editor.bind('<KeyRelease>', colorFormat)
 
     toCode.pack(expand=True, fill=BOTH, side=LEFT, padx=(1.75, 1.75), pady=(1.75, 2.5))
@@ -231,3 +245,23 @@ def inicializeWindow():
     createShorcuts()
     menuBarCreator()
     window.mainloop()
+
+
+def uploadColormap():
+    afile = open(r'resources//data.pkl', 'wb')
+    pickle.dump(colormap, afile)
+    afile.close()
+
+
+def loadColormap():
+    global colormap
+
+    colors = open(r'resources//data.pkl', 'rb')
+    colormap = pickle.load(colors)
+    colors.close()
+
+    for c in colormap:
+        editor.tag_delete(c)
+        editor.tag_configure(c, foreground=colormap[c])
+
+    colorFormat(None)
