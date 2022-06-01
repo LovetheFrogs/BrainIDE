@@ -11,8 +11,8 @@ brainfuck coding on the go, without the need of an Internet connection. Fully co
 | ![windows](https://user-images.githubusercontent.com/102818341/170823884-9351cfff-b952-4322-851b-70c9e0b0b6b8.png) | ![linux](https://user-images.githubusercontent.com/102818341/170818959-2dbed08b-ef42-4669-b857-38568917041e.png) |
 
 ## BrainIDE's features.
-BrainIDE has several features that makes it helful and easy-to-use. The most relevant ones are automatic code highlighting, keyboard shorcuts for ecery 
-action, and typical functions any IDE has (save, open project...)
+BrainIDE has several features that makes it helful and easy-to-use. The most relevant ones are automatic code highlighting, keyboard shorcuts for every 
+action, a text-to-brainfuck translator and a charr-to-ASCII function, as well as customizing features to change the look of your code.
 
 For more advanced users, BrainIDE's interpreter can be changed by just cloning the repository and changing brainfuck_compiler.py with your own. **Note it 
 must be renamed to _brainfuck_compiler.py_**
