@@ -8,6 +8,9 @@ class Interface(Window):
     def get_name(self):
         raise NotImplementedError("To be implemented.")
 
+    def start(self):
+        raise NotImplementedError("To be implemented.")
+
     def get_instance(self):
         raise NotImplementedError("To be implemented.")
 
