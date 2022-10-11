@@ -1,7 +1,8 @@
 class Window:
-    def __init__(self):
-        raise NotImplementedError("To be implemented.")
-
+    def __init__(self, name, title):
+        self.name = name
+        self.title = title
+        
     @abstractmethod
     def get_name(self):
-        raise NotImplementedError("To be implemented.")
+        pass
