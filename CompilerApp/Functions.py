@@ -2,50 +2,50 @@ class Functions:
     def __init__(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_dialog(self):
+    def open_dialog(self):
         raise NotImplementedError("To be implemented.")
 
-    def __clear_all(self):
+    def clear_all(self):
         raise NotImplementedError("To be implemented.")
 
-    def __run(self):
+    def run(self):
         raise NotImplementedError("To be implemented.")
 
-    def __new_file(self):
+    def new_file(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_file(self):
+    def open_file(self):
         raise NotImplementedError("To be implemented.")
 
-    def __save_as(self):
+    def save_as(self):
         raise NotImplementedError("To be implemented.")
 
-    def __save(self):
+    def save(self):
         raise NotImplementedError("To be implemented.")
 
-    def __close_file(self):
+    def close_file(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_premade(self):
+    def open_premade(self):
         raise NotImplementedError("To be implemented.")
 
-    def __color_format(self):
+    def color_format(self):
         raise NotImplementedError("To be implemented.")
 
-    def __format_line(self):
+    def format_line(self):
         raise NotImplementedError("To be implemented.")
 
-    def __sidebar_contents(self):
+    def sidebar_contents(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_config(self):
+    def open_config(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_translator(self):
+    def open_translator(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_help(self):
+    def open_help(self):
         raise NotImplementedError("To be implemented.")
 
-    def __open_ascii(self):
+    def open_ascii(self):
         raise NotImplementedError("To be implemented.")
