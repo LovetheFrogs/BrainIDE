@@ -11,6 +11,9 @@ class Translator(Window):
     def translate(self):
         raise NotImplementedError("To be implemented.")
 
+    def copy_output(self):
+        raise NotImplementedError("To be implemented.")
+
     def __translate_first(self):
         raise NotImplementedError("To be implemented.")
 

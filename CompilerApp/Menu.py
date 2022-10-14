@@ -1,7 +1,11 @@
+import tkinter as tk
+
+
 class Menu:
-    def __init__(self):
-        raise NotImplementedError("To be implemented.")
+    def __init__(self, window):
+        self.menu_bar = tk.Menu(window)
+        self.submenus = []
 
     @abstractmethod
     def __generate_tabs(self):
-        raise NotImplementedError("To be implemented.")
+        pass
