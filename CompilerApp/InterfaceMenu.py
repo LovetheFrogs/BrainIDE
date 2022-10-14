@@ -8,6 +8,7 @@ import threading as th
 class InterfaceMenu(Menu):
     def __init__(self, window):
         super().__init__(window)
+        self.__generate_tabs()
 
     def __generate_file_menu(self, opt):
         self.submenus[opt].add_command(label='New File...', command=f.new_file,
